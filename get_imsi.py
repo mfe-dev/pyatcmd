@@ -8,7 +8,6 @@ logger = logging.getLogger("pyatcmd.examples.get_imsi")
 pyatcmd_logger.create_logger()
 
 with at:
-    at.port_name = "/dev/tty12"
     logger.info(f"Connected to {at.port_name}")
     logger.info("Getting SIM Card IMSI")
     imsi = at.get_imsi()

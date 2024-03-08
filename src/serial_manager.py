@@ -152,12 +152,11 @@ class SerialManager:
 
     def get_at_port_name(self):
         for p in sorted(self.get_com_port_list()):
-            if re.search(r"/dev/ttyUSB*", p.device):
-                print(f"Trying {p.device}")
+            if re.search(r"/dev/ttyUSB*|COM*", p.device):
                 try:
                     at_port = None
                     at_port = self.open_serial_port(p.device, write_timeout=1)
-                    if "OK" in self.write_serial_port(at_port, "ATE1\r", print_output=True):
+                    if "OK" in self.write_serial_port(at_port, "ATE1\r", print_output=False):
                         return p.device
                 except Exception:
                     pass
